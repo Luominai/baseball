@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import ttk
 from pprint import pprint
 
 # store bounds of the rectangle to observe
@@ -12,6 +11,9 @@ end_y = None
 screen = Tk()
 screen.attributes("-fullscreen", True)
 screen.attributes("-alpha", 0.4)
+screen.minsize(1920, 1080)
+screen_width = screen.winfo_screenwidth()
+screen_height = screen.winfo_screenheight()
 
 # add a canvas to that screen
 canvas = Canvas(screen, cursor="cross", background="black")
@@ -46,6 +48,13 @@ screen.bind("<ButtonRelease-1>", release)
 screen.bind("<B1-Motion>", move)
 screen.bind("q", quit)
 
-def setup_screen():
+def setup_screen(scale):
     mainloop()
-    return(start_x, start_y, end_x, end_y)
+    rectangle = {
+        "start_x": round(start_x * scale),
+        "start_y": round(start_y * scale),
+        "end_x": round(end_x * scale),
+        "end_y": round(end_y * scale)
+    }
+    print(rectangle)
+    return(rectangle)
