@@ -38,7 +38,7 @@ def move(pos):
     )
 
 def quit(_):
-    screen.quit()
+    screen.destroy()
 
 # attach handlers
 screen.bind("<ButtonPress-1>", press)
@@ -48,6 +48,4 @@ screen.bind("q", quit)
 
 def setup_screen():
     mainloop()
-    print(start_x, start_y, end_x, end_y)
-
-setup_screen()
+    return(start_x, start_y, end_x, end_y)
