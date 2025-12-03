@@ -34,7 +34,7 @@ def process(img):
     #         cv.circle(img,(i[0],i[1]),2,(0,0,255),3)
             
     # img = edge_pixels
-    # img = bg_sub.apply(img)
+    img = bg_sub.apply(img)
     cv.imshow("OpenCV/Numpy normal", img)
     
 setup_mss(process, ready)

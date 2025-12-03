@@ -3,7 +3,7 @@ import numpy as np
 from tkinter_screenshot import setup_screen
 import mss
 
-def setup_mss(process, ready, scale = 1.25):
+def setup_mss(process, ready=None, scale = 1.25):
     rectangle = setup_screen(scale)
     start_x, start_y, end_x, end_y = rectangle["start_x"], rectangle["start_y"], rectangle["end_x"], rectangle["end_y"]
     top = min(start_y, end_y)
@@ -18,7 +18,7 @@ def setup_mss(process, ready, scale = 1.25):
     with mss.mss() as sct:
         while "Screen capturing":
             img = np.array(sct.grab(monitor))
-            if first_img:
+            if first_img and ready is not None:
                 ready(img)
                 first_img = False
             process(img)
