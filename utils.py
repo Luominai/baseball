@@ -26,3 +26,31 @@ def setup_mss(process, ready=None, scale = 1.25):
             if cv.waitKey(25) & 0xFF == ord("q"):
                 cv.destroyAllWindows()
                 break
+
+def setup_video_capture(process, path_to_video=""):
+    is_paused = False
+    skip_frame = True
+
+    cap = cv.VideoCapture(path_to_video)
+    while cap.isOpened():
+        key = cv.waitKey(1)
+
+        if key == ord('q'):
+            break
+        elif key == ord('s'):
+            is_paused = not is_paused
+        elif key == ord('d'):
+            skip_frame = True
+
+        if is_paused and not skip_frame:
+            continue
+        
+        ret, frame = cap.read()
+        # if frame is read correctly ret is True
+        if not ret:
+            print("Can't receive frame (stream end?). Exiting ...")
+            break
+        process(frame)
+
+        skip_frame = False
+        

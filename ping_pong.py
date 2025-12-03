@@ -20,7 +20,7 @@ def process(img):
     # if lines is not None:   
     #     for line in lines:
     #         x1,y1,x2,y2=line[0]
-    #         cv.line(img,(x1,y1),(x2,y2),(0,255,0),2)
+            # cv.line(img,(x1,y1),(x2,y2),(0,255,0),2)
 
     # circles = cv.HoughCircles(gray,cv.HOUGH_GRADIENT,1,20,
     #                         param1=200,param2=8,minRadius=0,maxRadius=6)
@@ -34,7 +34,7 @@ def process(img):
     #         cv.circle(img,(i[0],i[1]),2,(0,0,255),3)
             
     # img = edge_pixels
-    img = bg_sub.apply(img)
+    # img = bg_sub.apply(img)
     cv.imshow("OpenCV/Numpy normal", img)
     
 setup_mss(process, ready)
