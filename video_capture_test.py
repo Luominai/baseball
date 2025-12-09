@@ -1,10 +1,11 @@
 from utils import setup_video_capture
 import cv2 as cv
 
-video = "videos/Frisco Memorial scrimmage pitching side view - Andy Zappe (1080p, h264).mp4"
+# video = "videos/Frisco Memorial scrimmage pitching side view - Andy Zappe (1080p, h264).mp4"
 # video = "videos/Physical Literacy Video Model Throwing (Side View) - Canucks Autism Network Video Models (1080p, h264).mp4"
 # video = "videos/Noah Yoder Face On Side View Vs Hanover HS - Adams Performance Fitness and Physical Therapy (1080p, h264).mp4"
 # video = "videos/Pitching, Side view, June 2025 - Cienna Alvarez (480p, h264).mp4"
+video = "videos\RHP Will Hodges Hanover HS_Liberty Commit) Side View 2nd Inning - Adams Performance Fitness and Physical Therapy (1080p, h264).mp4"
 
 # Press Q to exit
 # Press S to pause
