@@ -3,14 +3,16 @@ import cv2 as cv
 
 # threshold = 1600, blur = 9
 video = "videos/Frisco Memorial scrimmage pitching side view - Andy Zappe (1080p, h264).mp4"
+# threshold = 1600, blur = 9
 # video = "videos/Physical Literacy Video Model Throwing (Side View) - Canucks Autism Network Video Models (1080p, h264).mp4"
+# threshold = 1600, blur = 9
 # video = "videos/Noah Yoder Face On Side View Vs Hanover HS - Adams Performance Fitness and Physical Therapy (1080p, h264).mp4"
 # threshold = 1200, blur = 3
 # video = "videos/Pitching, Side view, June 2025 - Cienna Alvarez (480p, h264).mp4"
 # video = "videos\RHP Will Hodges Hanover HS_Liberty Commit) Side View 2nd Inning - Adams Performance Fitness and Physical Therapy (1080p, h264).mp4"
 # video = "videos\FRONT ROW AT THE REDS_CARDINALS GAME! - Ethan's Sports Cards & More (720p, h264).mp4"
 
-scale = 1
+scale = .7
 threshold = 1600
 blur = 9
 
@@ -23,12 +25,13 @@ bg_sub.setDist2Threshold(threshold)
 bg_sub.setHistory(10)
 
 def process(img):
-    img = cv.resize(img, None, fx=scale, fy=scale)
 
     # blur the original image, then apply background subtraction 
-    img1 = cv.blur(img, (blur, blur))
-    img1 = bg_sub.apply(img1)
-    cv.imshow("bg_sub", img1)
+    img = cv.blur(img, (blur, blur))
+    img = bg_sub.apply(img)
+
+    img = cv.resize(img, None, fx=scale, fy=scale)
+    cv.imshow("bg_sub plus blur", img)
 
     # # apply canny edge detection to original image
     # img2 = cv.Canny(img, 200, 400)
