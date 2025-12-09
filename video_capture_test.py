@@ -16,7 +16,7 @@ bg_sub.setDist2Threshold(3600)
 bg_sub.setHistory(10)
 
 def process(img):
-    img = cv.resize(img, None, fx=0.36, fy=0.36)
+    img = cv.resize(img, None, fx=0.34, fy=0.34)
 
     img1 = bg_sub.apply(img)
     cv.imshow("bg_sub", img1)
