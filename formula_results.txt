@@ -1,0 +1,3 @@
+Formula predictions (horiz, vert) - Assuming initial velocity 5 pixels/sec:
+Frisco - (632, 213)
+
