@@ -18,16 +18,20 @@ bg_sub.setHistory(10)
 def process(img):
     img = cv.resize(img, None, fx=0.34, fy=0.34)
 
+    # apply background subtraction to original image
     img1 = bg_sub.apply(img)
     cv.imshow("bg_sub", img1)
 
+    # apply canny edge detection to original image
     img2 = cv.Canny(img, 250, 400)
     cv.imshow("canny", img2)
 
+    # inflate the edges
     img3 = cv.blur(img2, (7,7))
     ret, img3 = cv.threshold(img3, 0, 200, cv.THRESH_BINARY)
     cv.imshow("blurred canny", img3)
 
+    # subtract the inflated edges from the original images to reduce background noise
     img4 = cv.subtract(img1, img3)
     # ret, img4 = cv.threshold(img4, 100, 255, cv.THRESH_BINARY)
     cv.imshow("diff", img4)
