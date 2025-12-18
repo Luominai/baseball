@@ -7,7 +7,7 @@ pip install -r requirements.txt
 python baseball_tracker_predictor.py
 
 # Instructions to use:
-Use the CLI to go through the steps to upload video, select frames, and show tracked line.
+Use the CLI to go through the steps to upload a video, select frames, and show the tracked line.
 
 # Prediction:
-The prediction is only avialable for the smaple video. And the end cooridates are in 'formula results.txt.'
+The prediction is only available for the sample video. The end coordinates are in 'formula results.txt.'
