@@ -28,8 +28,14 @@ def setup_mss(process, ready=None, scale = 1.25):
                 break
 
 def setup_video_capture(process, path_to_video=""):
-    is_paused = False
+    is_paused = True
     skip_frame = True
+    frame_count = 0
+
+    bg_sub = cv.createBackgroundSubtractorKNN()
+    bg_sub.setDist2Threshold(3600)
+    # bg_sub.setHistory(10)
+    bg_sub.setHistory(1)
 
     cap = cv.VideoCapture(path_to_video)
     while cap.isOpened():
@@ -41,6 +47,24 @@ def setup_video_capture(process, path_to_video=""):
             is_paused = not is_paused
         elif key == ord('d'):
             skip_frame = True
+        elif key == ord('f'): # save frame
+            output_filename = "frames/"+path_to_video[7:-4]+"_"+str(frame_count)+".jpg"
+
+            img1 = bg_sub.apply(frame)
+
+            # apply canny edge detection to original image
+            img2 = cv.Canny(frame, 250, 400)
+
+            # inflate the edges
+            img3 = cv.blur(img2, (7,7))
+            ret, img3 = cv.threshold(img3, 0, 200, cv.THRESH_BINARY)
+
+            # subtract the inflated edges from the original images to reduce background noise
+            img4 = cv.subtract(img1, img3)
+
+            # save
+            cv.imwrite(output_filename, img4)
+            frame_count += 1
 
         if is_paused and not skip_frame:
             continue
@@ -50,6 +74,8 @@ def setup_video_capture(process, path_to_video=""):
         if not ret:
             print("Can't receive frame (stream end?). Exiting ...")
             break
+        
+        bg_sub.apply(frame)
         process(frame)
 
         skip_frame = False
