@@ -4,12 +4,13 @@
 import time
 import numpy as np
 import cv2 as cv
- 
+
 # Threshold: 5000, varThreshold: 80
 # cap = cv.VideoCapture('videos\Physical Literacy Video Model Throwing (Side View) - Canucks Autism Network Video Models (1080p, h264).mp4')
 # Threshold: 600, History: 100
 # cap = cv.VideoCapture('videos\Pitching, Side view, June 2025 - Cienna Alvarez (480p, h264).mp4')
-cap = cv.VideoCapture('videos/Frisco Memorial scrimmage pitching side view - Andy Zappe (1080p, h264).mp4')
+video = 'videos/pitch_01.mp4'
+cap = cv.VideoCapture(video)
 
 background_subtraction = cv.createBackgroundSubtractorMOG2(varThreshold=160)
 # background_subtraction = cv.createBackgroundSubtractorKNN()
